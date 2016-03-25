@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import application.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../resources/MainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.mainform.MainFormController">
+   <children>
+      <Pane fx:id="sidePane" layoutY="50.0" prefHeight="550.0" prefWidth="250.0" scaleZ="-250.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/LogoTextC5_1.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="usernameText" layoutX="29.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Label fx:id="ff" layoutX="23.0" layoutY="53.0" text="Label" />
+                  
+                
+        
+                  
+                  
+                  
+               </children>
+            </Pane>
+            <VBox fx:id="hBoxMenu" layoutY="100.0" prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #1E88E5;" />
+         </children>
+      </Pane>
+      <AnchorPane prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #1467CC;">
+         <children>
+            <MaterialText fill="WHITE" layoutX="64.0" layoutY="30.0" text="CrowdRise">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </MaterialText>
+            <JFXButton fx:id="btnMenu" layoutX="7.0" onAction="#menuAction" prefHeight="50.0" prefWidth="51.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="viewPane" layoutX="250.0" layoutY="50.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: white;" />
+   </children>
+</AnchorPane>

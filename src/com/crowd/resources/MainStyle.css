@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 2, 2015, 7:37:29 PM
+    Author     : eby
+*/
+
+.tab-title .text{
+    -fx-font-size: 16;
+    -fx-font-family: Ubuntu Condensed;
+    -fx-fill-color: white;
+    -fx-padding: 20;
+    -fx-background-insets: 80;
+}
+
+.icon {
+    -fx-background-position: right;
+    -fx-fill-color: white;
+    -fx-fill: white;
+}
+
+.material-text{
+    -fx-fill: white;
+    -fx-fill-color: white;
+    -fx-font-family: Ubuntu Condensed;
+    -fx-font-size: 26px;
+}
+
+.burger-color{
+    -fx-fill: white;
+    -fx-fill-color: white;
+}

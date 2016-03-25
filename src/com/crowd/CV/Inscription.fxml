@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kairos.components.*?>
+<?import org.controlsfx.control.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import javafx.scene.text.*?>
+<?import application.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="paneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;" stylesheets="@../resources/controls.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.CV.InscriptionController">
+   <children>
+      <GridPane hgap="10.0" layoutX="185.0" layoutY="396.0" AnchorPane.bottomAnchor="6.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MaterialButton onAction="#btnInscription" text="inscription" />
+            <MaterialButton text="login" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <VBox alignment="CENTER" layoutX="230.0" layoutY="21.0" prefHeight="375.0" prefWidth="511.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="21.0">
+         <children>
+            <TextInputLayout>
+               <children>
+                  <TextField fx:id="nom" promptText="nom" />
+               </children>
+            </TextInputLayout>
+            <TextInputLayout>
+               <children>
+                  <TextField fx:id="prenom" promptText="prenom" />
+               </children>
+            </TextInputLayout>
+            <DatePicker fx:id="date_naissance" promptText="date de naissance" />
+            <TextInputLayout>
+               <children>
+                  <TextField fx:id="username" promptText="username" />
+               </children>
+            </TextInputLayout>
+            <TextInputLayout>
+               <children>
+                  <TextField fx:id="email" promptText="email" />
+               </children>
+            </TextInputLayout>
+            <TextInputLayout>
+               <children>
+                  <PasswordField fx:id="password" promptText="password" />
+               </children>
+            </TextInputLayout>
+            <MaterialButton onAction="#searchImage" style="-fx-background-color: grey;" text="photo de profile" />
+         </children>
+      </VBox>
+      <ImageView fx:id="imgview" fitHeight="150.0" fitWidth="200.0" layoutX="440.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+   </children>
+</AnchorPane>
