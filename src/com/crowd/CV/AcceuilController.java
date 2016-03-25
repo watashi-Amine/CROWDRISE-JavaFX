@@ -48,4 +48,8 @@ public class AcceuilController implements Initializable {
      private void f(){
          System.out.println("sswdsfsss");   
      }
+     
+      private void f22(){
+         System.out.println("yo");   
+     }
 }
