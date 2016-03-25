@@ -52,4 +52,8 @@ public class AcceuilController implements Initializable {
       private void f22(){
          System.out.println("yo");   
      }
+      
+       private void Adelll(){
+         System.out.println("yo");   
+     }
 }
