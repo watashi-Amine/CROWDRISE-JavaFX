@@ -44,4 +44,8 @@ public class AcceuilController implements Initializable {
      private void fadeIn() {
         new FadeInLeftTransition(paneParent).play();
     }
+     
+     private void f(){
+         System.out.println("sswdsfsss");   
+     }
 }
