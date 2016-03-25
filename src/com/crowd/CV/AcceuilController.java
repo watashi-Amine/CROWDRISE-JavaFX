@@ -53,7 +53,7 @@ public class AcceuilController implements Initializable {
          System.out.println("yo");   
      }
       
-       private void Adelll(){
+       private void Azerty(){
          System.out.println("yo");   
      }
 }
