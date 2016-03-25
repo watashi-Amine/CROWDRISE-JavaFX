@@ -99,7 +99,7 @@ public class  MainFormController implements Initializable {
             public void handle(Event event) {
                 System.out.println("Acceuil click !!!");
                 
-                                loadStage.loadAnchorPane(viewPane, "/CV/acceuil.fxml");
+                                loadStage.loadAnchorPane(viewPane, "/CV/ProjetsAccueil.fxml");
 
             }
         });
@@ -111,7 +111,25 @@ public class  MainFormController implements Initializable {
                 System.out.println("parametre de compte click !!!");
             }
         });
+         VBoxContentHelper.propHelper("Projets", new MaterialDesignIconView(MaterialDesignIcon.PANDA), hBoxMenu, new EventHandler() {
 
+            @Override
+            public void handle(Event event) {
+                System.out.println("About Click Success !!!");
+                loadStage.loadAnchorPane(viewPane, "/CV/Projets.fxml");
+            }
+        });
+
+           VBoxContentHelper.propHelper("Mes Projets", new MaterialDesignIconView(MaterialDesignIcon.PANDORA), hBoxMenu, new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("About Click Success !!!");
+                loadStage.loadAnchorPane(viewPane, "/CV/MesProjets.fxml");
+            }
+        });
+         
+         
         VBoxContentHelper.propHelper("About", new MaterialDesignIconView(MaterialDesignIcon.INFORMATION), hBoxMenu, new EventHandler() {
 
             @Override

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import org.kairos.components.*?>
+<?import application.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="393.0" stylesheets="@controls.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.CV.AjoutProjetController">
+   <children>
+      <Pane layoutY="-6.0" prefHeight="477.0" prefWidth="393.0" AnchorPane.bottomAnchor="-71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+         <children>
+            <Label fx:id="Titre" layoutX="54.0" layoutY="73.0" text="Titre" />
+            <Label fx:id="Resume" layoutX="54.0" layoutY="126.0" text="Resume" />
+            <Label fx:id="Budget" layoutX="56.0" layoutY="211.0" text="Budget" />
+            <Label layoutX="53.0" layoutY="305.0" text="Type" />
+            <Label layoutX="47.0" layoutY="381.0" text="Categorie" />
+            <ComboBox fx:id="TypeF" layoutX="151.0" layoutY="305.0" onAction="#TypeFAction" prefWidth="150.0" />
+            <ComboBox fx:id="CategorieF" layoutX="151.0" layoutY="373.0" onAction="#CategorieFAction" prefWidth="150.0" />
+            <Label fx:id="AjoutProjetlabel" layoutX="27.0" layoutY="14.0" text="Label" />
+            <Button layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#UploafAction" text="..." />
+            <Label layoutX="44.0" layoutY="440.0" text="Upload" />
+            <TextInputLayout layoutX="151.0" layoutY="44.0">
+               <children>
+                  <TextField fx:id="TitreF" />
+               </children>
+            </TextInputLayout>
+            <TextInputLayout layoutX="150.0" layoutY="98.0">
+               <children>
+                  <TextArea fx:id="ResumeF" prefHeight="66.0" prefWidth="149.0" />
+               </children>
+            </TextInputLayout>
+            <TextInputLayout layoutX="150.0" layoutY="195.0">
+               <children>
+                  <TextField fx:id="BudgetF" />
+               </children>
+            </TextInputLayout>
+            <MaterialButton fx:id="AjouterBtn" layoutX="152.0" layoutY="507.0" onAction="#AjoutAction" text="Ajouter" />
+            <MaterialButton fx:id="AnnulerBtn" layoutX="262.0" layoutY="507.0" onAction="#AnnulerAction" text="Annuler" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

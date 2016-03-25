@@ -7,6 +7,7 @@ package com.crowd.CV;
 import com.crowd.about.AboutController;
 import com.crowd.DAO.MembreDAO;
 import com.crowd.IDAO.IMembre;
+import com.crowd.Util.Singleton;
 import com.crowd.entities.Membre;
 import com.crowd.helper.LoadStage;
 import com.crowd.mainform.Main;
@@ -80,7 +81,7 @@ public class LoginController implements Initializable {
 //*****pour l'initialisation du nom de profile                  
                 membreInfo=im.informationMembre(username.getText());
                  
-                
+                Singleton.getInstance().setMembre(membreInfo);
                
 //            MF.setListinfomembre(Listinfomembre);
         ((Node)event.getSource()).getScene().getWindow().hide();
@@ -107,7 +108,7 @@ Stage dialogStage=new Stage();
 
            MainFormController MF=loader.getController();
            
-           MF.setUsernameText("jjjjj");
+           MF.setUsernameText(membre.getPrenom());
            
            
 //MF.setUsernameText("kkkkk");

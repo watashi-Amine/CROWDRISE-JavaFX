@@ -17,6 +17,9 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
+    private Stage primaryStage;
+    
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/com/crowd/CV/login1.fxml"));
@@ -26,6 +29,10 @@ public class Main extends Application {
     
     public static void main(String[] args) {
         launch(args);
+    }
+    
+     public Stage getPrimaryStage() {
+        return primaryStage;
     }
     
 }
