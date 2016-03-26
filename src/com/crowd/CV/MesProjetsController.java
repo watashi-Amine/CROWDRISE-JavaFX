@@ -418,13 +418,13 @@ showProjetDetails(null);
     private void ActualiserAction(ActionEvent event) {
         
            ProjetData.removeAll(ProjetData);
-               ProjetData.addAll(ProjetDao.display());
+               ProjetData.addAll(ProjetDao.displaytest(Singleton.getInstance().getMembre().getId_membre()));
             
                ProjetTableView.setItems(ProjetData);
            
         
        
-        System.out.println(Singleton.getInstance().getMembre().getId_membre()+"eeeeeeeee");
+    
         
     }
 

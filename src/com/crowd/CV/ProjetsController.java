@@ -362,50 +362,7 @@ showProjetDetails(null);
          
      }
 
-    @FXML
-    private void cherchAction(ActionEvent event) {
-//        
-//        
-//       
-//        if (cherchF.getText() == null || cherchF.getText().length() == 0)
-//        {
-//            Alert alert = new Alert(AlertType.WARNING);
-//        alert.initOwner(mainApp.getPrimaryStage());
-//        alert.setTitle("recherche vide");
-//        alert.setHeaderText("aucun saisie detecter");
-//        alert.setContentText("S'il vous plaît saisissez un titre pour la recherche.");
-//
-//        alert.showAndWait();
-//            
-//        }
-//        
-//        
-//        else
-//        {
-//               ProjetData.removeAll(ProjetData);
-//               ProjetData.addAll(ProjetDao.findByNOM_PROJET(cherchF.getText()));
-//            
-//               ProjetTableView.setItems(ProjetData);
-//           
-//            
-//            
-//               
-//        }
-        
-        
-        
-        
-        
-        
-     
-        
-        
-        
-        
-        
-        
-    }
-
+  
     @FXML
     private void ActualiserAction(ActionEvent event) {
         

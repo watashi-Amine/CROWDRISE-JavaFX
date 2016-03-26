@@ -5,6 +5,7 @@
  */
 package com.crowd.DAO;
 
+import com.crowd.IDAO.icategorie;
 import com.crowd.Util.MyConnexion;
 import com.crowd.entities.Projet;
 import com.crowd.entities.categorieProjet;
@@ -124,23 +125,29 @@ public class ProjetDao implements iprojet {
 
     }
 
-    public List<Projet> displaytest() {
+    public List<Projet> displaytest(int i) {
 
         List<Projet> ListeProjet = new ArrayList<Projet>();
 
-        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_CATEGORIE_PROJET,ID_TYPE from projet";
+        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where id =?  ;";
         try {
-            Statement statement = cnx.createStatement();
-            ResultSet resultat = statement.executeQuery(requete);
-
+               pstm = cnx.prepareStatement(requete);
+          
+            pstm = cnx.prepareStatement(requete);
+            pstm.setInt(1, i);
+            
+            
+              ResultSet resultat = pstm.executeQuery();
+            
             while (resultat.next()) {
                 Projet Projet = new Projet();
-                Projet.setNOM_PROJET(resultat.getString(1));
+                 Projet.setNOM_PROJET(resultat.getString(1));
                 Projet.setRESUME(resultat.getString(2));
                 Projet.setBUDJET(resultat.getDouble(3));
                 Projet.setArgent(resultat.getDouble(4));
-                Projet.setCATEGORIE(new categorieProjet(resultat.getInt(5)));
-                Projet.setType(new typeProjet(resultat.getInt(4)));
+                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_Cat(resultat.getInt(6));
+                Projet.setID_Type(resultat.getInt(7));
                 ListeProjet.add(Projet);
             }
 
@@ -169,23 +176,26 @@ public class ProjetDao implements iprojet {
         }
     }
 
-    public List<Projet> findByNOM_PROJET(String d) {
+      public List<Projet> findByNOM_PROJET(String d) {
         List<Projet> listeProjets = new ArrayList<Projet>();
 
-        String requete = "select NOM_PROJET,RESUME,BUDJET,argent from projet where NOM_PROJET like '%" + d + "%';";
+        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where NOM_PROJET like '%' ? '%';";
 
         try {
-            pstm = cnx.prepareStatement(requete);
-
-//            pstm.setString(1, d);
+           
+      pstm = cnx.prepareStatement(requete);
+            pstm.setString(1, d);
             ResultSet resultat = pstm.executeQuery();
-
+ 
             while (resultat.next()) {
                 Projet Projet = new Projet();
                 Projet.setNOM_PROJET(resultat.getString(1));
                 Projet.setRESUME(resultat.getString(2));
                 Projet.setBUDJET(resultat.getDouble(3));
                 Projet.setArgent(resultat.getDouble(4));
+                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_Cat(resultat.getInt(6));
+                Projet.setID_Type(resultat.getInt(7));
                 listeProjets.add(Projet);
             }
 
@@ -197,5 +207,68 @@ public class ProjetDao implements iprojet {
         }
 
     }
+
+public List<Projet> findByNOM_PROJETAndUser(String d,int i) {
+        List<Projet> listeProjets = new ArrayList<Projet>();
+
+        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where NOM_PROJET like '%' ? '%' And id = ?;";
+
+        try {
+           
+      pstm = cnx.prepareStatement(requete);
+            pstm.setString(1, d);
+            pstm.setInt(2, i);
+            ResultSet resultat = pstm.executeQuery();
+  icategorie icat = new categorieProjetDao();
+            while (resultat.next()) {
+                Projet Projet = new Projet();
+                Projet.setNOM_PROJET(resultat.getString(1));
+                Projet.setRESUME(resultat.getString(2));
+                Projet.setBUDJET(resultat.getDouble(3));
+                Projet.setArgent(resultat.getDouble(4));
+                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_Cat(resultat.getInt(6));
+                Projet.setID_Type(resultat.getInt(7));
+                listeProjets.add(Projet);
+            }
+
+            return listeProjets;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche  " + ex.getMessage());
+            return null;
+        }
+
+    }
+
+
+       public void addthis(Projet p) {
+
+        String req = "insert into projet (NOM_PROJET,RESUME,BUDJET,argent,ID_CATEGORIE_PROJET,ID_TYPE,FICHIER,id) values (?,?,?,?,?,?,?,?) ";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, p.getNOM_PROJET());
+            ps.setString(2, p.getRESUME());
+
+            ps.setDouble(3, p.getBUDJET());
+            ps.setDouble(4, p.getArgent());
+            ps.setInt(5, p.getCATEGORIE().getID_CATEGORIE_PROJET());
+
+            ps.setInt(6, p.getType().getID_TYPE());
+                ps.setString(7, p.getFICHIER());
+                ps.setInt(8, p.getMembre().getId_membre());
+            ps.executeUpdate();
+            System.out.println("ok");
+
+        } catch (SQLException ex) {
+            System.out.println("non");
+
+            Logger.getLogger(ProjetDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+
+
 
 }

@@ -37,6 +37,10 @@ public class Membre {
     public Membre() {
     }
 
+    public Membre(int id_membre) {
+        this.id_membre = id_membre;
+    }
+
     public Membre( String nom, String prenom,String username, String password, String email,String date_naissance,Boolean isAdministrateur,File userimage,String imagename) {
         
         this.nom = nom;

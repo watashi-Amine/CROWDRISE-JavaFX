@@ -13,6 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -29,13 +32,23 @@ public class ProjetsAccueilController implements Initializable {
     private Label Pudgetid;
     @FXML
     private Label Argentid;
+    @FXML
+    private VBox VBosId;
+    @FXML
+    private GridPane aaa;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+      
+        for (int i = 0; i < 10; i++) {
+           aaa.getChildren().set(i, aaa);
+        }
+        
+        
     }    
 
     @FXML
@@ -45,5 +58,10 @@ public class ProjetsAccueilController implements Initializable {
     @FXML
     private void FinancerAction(ActionEvent event) {
     }
+    
+    
+    
+    
+    
     
 }

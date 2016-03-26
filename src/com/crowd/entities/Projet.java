@@ -25,6 +25,15 @@ private double	argent;
 
    private typeProjet type;
       private categorieProjet CATEGORIE ; 
+      
+        public Membre getMembre() {
+        return membre;
+    }
+
+    public void setMembre(Membre membre) {
+        this.membre = membre;
+    }
+ private Membre membre;
   public Projet(String NOM_PROJET, String RESUME, double BUDJET, double argent,typeProjet type, categorieProjet CATEGORIE) {
         this.NOM_PROJET = NOM_PROJET;
         this.RESUME = RESUME;

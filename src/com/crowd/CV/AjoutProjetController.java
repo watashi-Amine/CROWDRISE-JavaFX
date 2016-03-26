@@ -9,6 +9,7 @@ package com.crowd.CV;
 import com.crowd.DAO.*;
 import com.crowd.entities.*;
 import com.crowd.IDAO.*;
+import com.crowd.Util.Singleton;
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
@@ -145,10 +146,15 @@ public class AjoutProjetController implements Initializable {
                 Projet.setType(T);
                 Projet.setCATEGORIE(C);
                Projet.setFICHIER(AbsolutePath);
+               
+               Membre m = new Membre(Singleton.getInstance().getMembre().getId_membre());
+               
+               Projet.setMembre(m);
                 iprojet iproj = new ProjetDao();
-                iproj.add(Projet);
+                iproj.addthis(Projet);
                 ajouterClicked = true;
                 dialogStage.close();
+                    System.out.println(Singleton.getInstance().getMembre().getId_membre()+"eeeeeeeee");
             }
         }
 

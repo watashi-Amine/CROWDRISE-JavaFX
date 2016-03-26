@@ -20,8 +20,8 @@ public interface iprojet {
     public List<Projet> display();
       public boolean supprimerProjjet(int id) ;
       public  List<Projet> findByNOM_PROJET(String d);
-       public List<Projet> displaytest() ;
+       public List<Projet> displaytest(int i) ;
       
-      
-      
+      public List<Projet> findByNOM_PROJETAndUser(String d,int i) ;
+        public void addthis(Projet p) ;
 }
