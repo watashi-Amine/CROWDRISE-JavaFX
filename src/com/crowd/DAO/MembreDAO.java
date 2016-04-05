@@ -274,7 +274,7 @@ public class MembreDAO implements IMembre {
                 while (rs.next()) {
                     System.out.println(rs.getString(1) + "---->pass hasher");
                     try {
-                        if (p.checkPassword(username, rs.getString(1)) == true) {
+                        if (p.checkPassword(password, rs.getString(1)) == true) {
 
                             System.out.println("authentification reussite");
                             return true;

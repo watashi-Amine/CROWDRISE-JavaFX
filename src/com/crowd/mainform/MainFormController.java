@@ -6,12 +6,12 @@
 package com.crowd.mainform;
 
 import application.MaterialText;
+
 import com.crowd.entities.Membre;
 import com.crowd.helper.LoadStage;
 import com.crowd.helper.VBoxContentHelper;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXHamburger;
-import com.sun.java.swing.plaf.windows.resources.windows;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
@@ -26,9 +26,11 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -61,8 +63,7 @@ public class  MainFormController implements Initializable {
     @FXML
     private Label ff;
     
-    
-
+ 
    
 
     
@@ -99,7 +100,8 @@ public class  MainFormController implements Initializable {
             public void handle(Event event) {
                 System.out.println("Acceuil click !!!");
                 
-                                loadStage.loadAnchorPane(viewPane, "/CV/ProjetsAccueil.fxml");
+                         
+                                loadStage.loadAnchorPane(viewPane, "/CV/Accueil.fxml");
 
             }
         });

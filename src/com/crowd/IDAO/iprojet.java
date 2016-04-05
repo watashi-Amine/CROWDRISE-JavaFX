@@ -21,7 +21,7 @@ public interface iprojet {
       public boolean supprimerProjjet(int id) ;
       public  List<Projet> findByNOM_PROJET(String d);
        public List<Projet> displaytest(int i) ;
-      
+      public List<Projet> findByCat(String d);
       public List<Projet> findByNOM_PROJETAndUser(String d,int i) ;
         public void addthis(Projet p) ;
 }

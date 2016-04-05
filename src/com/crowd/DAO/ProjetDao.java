@@ -269,6 +269,45 @@ public List<Projet> findByNOM_PROJETAndUser(String d,int i) {
     }
 
 
+       
+       
+       
+
+     
+public List<Projet> findByCat(String d) {
+        List<Projet> listeProjets = new ArrayList<Projet>();
+
+        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where  	ID_CATEGORIE_PROJET = ?;";
+
+        try {
+           
+      pstm = cnx.prepareStatement(requete);
+               icategorie icat = new categorieProjetDao();
+            pstm.setInt(1, icat.findIdByCat(d));
+            ResultSet resultat = pstm.executeQuery();
+  
+            while (resultat.next()) {
+                Projet Projet = new Projet();
+                Projet.setNOM_PROJET(resultat.getString(1));
+                Projet.setRESUME(resultat.getString(2));
+                Projet.setBUDJET(resultat.getDouble(3));
+                Projet.setArgent(resultat.getDouble(4));
+                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_Cat(resultat.getInt(6));
+                Projet.setID_Type(resultat.getInt(7));
+                listeProjets.add(Projet);
+            }
+
+            return listeProjets;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche  " + ex.getMessage());
+            return null;
+        }
+
+    }
+
+
 
 
 }

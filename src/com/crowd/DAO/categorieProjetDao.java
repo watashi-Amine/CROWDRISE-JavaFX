@@ -203,6 +203,28 @@ List<categorieProjet> listecategorieProjet = new ArrayList<categorieProjet>();
         throw new UnsupportedOperationException();
     
     }
+ 
+ 
+
+
+  public int findIdByCat(String nomcategorie) throws SQLException{
+    int categorieProjet = 0 ;
+        String requete = "select 	ID_CATEGORIE_PROJET from categorie_projet where 	CATEGORIE=?";
+       
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ps.setString(1, nomcategorie);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                categorieProjet=(resultat.getInt(1));
+              
+            }
+          
+            return categorieProjet;
+        
+
+      
+    
+    }
 
 
 

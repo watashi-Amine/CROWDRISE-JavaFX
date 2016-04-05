@@ -12,6 +12,7 @@ import com.crowd.IDAO.icategorie;
 import com.crowd.IDAO.iprojet;
 import com.crowd.IDAO.itype;
 import com.crowd.Util.Singleton;
+import com.crowd.animations.FadeInLeftTransition;
 import com.crowd.entities.Projet;
 import com.crowd.mainform.Main;
 import java.io.IOException;
@@ -88,6 +89,8 @@ public class MesProjetsController implements Initializable {
     private Button XBtn;
     @FXML
     private MaterialButton OBtn;
+    @FXML
+    private AnchorPane paneParent;
 
     
     /**
@@ -95,6 +98,9 @@ public class MesProjetsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        this.fadeIn();
+        
       cherchF.setPromptText("chercher projet");
         
 
@@ -371,50 +377,6 @@ showProjetDetails(null);
      }
 
     @FXML
-    private void cherchAction(ActionEvent event) {
-        
-        
-       
-        if (cherchF.getText() == null || cherchF.getText().length() == 0)
-        {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(mainApp.getPrimaryStage());
-        alert.setTitle("recherche vide");
-        alert.setHeaderText("aucun saisie detecter");
-        alert.setContentText("S'il vous plaît saisissez un titre pour la recherche.");
-
-        alert.showAndWait();
-            
-        }
-        
-        
-        else
-        {
-               ProjetData.removeAll(ProjetData);
-               ProjetData.addAll(ProjetDao.findByNOM_PROJET(cherchF.getText()));
-            
-               ProjetTableView.setItems(ProjetData);
-           
-            
-            
-               
-        }
-        
-        
-        
-        
-        
-        
-     
-        
-        
-        
-        
-        
-        
-    }
-
-    @FXML
     private void ActualiserAction(ActionEvent event) {
         
            ProjetData.removeAll(ProjetData);
@@ -461,11 +423,29 @@ showProjetDetails(null);
      
     }
 
-    @FXML
-    private void cherchAction(KeyEvent event) {
+  
+    
+ private void fadeIn() {
+        new FadeInLeftTransition(paneParent).play();
     }
 
-    
+    @FXML
+    private void cherchInstAction(KeyEvent event) {
+           ProjetData.removeAll(ProjetData);
+               ProjetData.addAll(ProjetDao.findByNOM_PROJET(cherchF.getText()));
+            
+               ProjetTableView.setItems(ProjetData);
+           
+    }
+
+    @FXML
+    private void cherchAction(ActionEvent event) {
+           ProjetData.removeAll(ProjetData);
+               ProjetData.addAll(ProjetDao.findByNOM_PROJET(cherchF.getText()));
+            
+               ProjetTableView.setItems(ProjetData);
+           
+    }
 
    
    

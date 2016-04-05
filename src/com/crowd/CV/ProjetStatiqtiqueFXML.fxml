@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import application.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="1000.0"  stylesheets="material-fx-v0_3.css" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.CV.ProjetStatiqtiqueFXMLController">
+   <children>
+      <AnchorPane prefHeight="1000.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="Anchorid" prefHeight="1000.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+            <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="983.0" text="MenuButton" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#A" text="Projet par categorie A" />
+                <MenuItem mnemonicParsing="false" onAction="#B" text="Projet par categorie B" />
+              </items>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -409,9 +409,56 @@ showProjetDetails(null);
      
     }
 
+    
+     public boolean showStatDialog() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/com/crowd/CV/ProjetStatiqtiqueFXML.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Stat d'un Projet");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the projets into the controller.
+            ProjetStatiqtiqueFXMLController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+           
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
+    
+    
     @FXML
-    private void cherchAction(KeyEvent event) {
+    private void statAction(ActionEvent event) {
         
+        
+           
+       
+    boolean okClicked = showStatDialog();
+   
+        
+        
+        
+        
+    }
+
+    @FXML
+    private void cherchInstAction(KeyEvent event) {
         
         
                ProjetData.removeAll(ProjetData);
@@ -419,8 +466,17 @@ showProjetDetails(null);
             
                ProjetTableView.setItems(ProjetData);
            
+    }
+
+    @FXML
+    private void cherchAction(ActionEvent event) {
         
         
+               ProjetData.removeAll(ProjetData);
+               ProjetData.addAll(ProjetDao.findByNOM_PROJET(cherchF.getText()));
+            
+               ProjetTableView.setItems(ProjetData);
+           
     }
 
     

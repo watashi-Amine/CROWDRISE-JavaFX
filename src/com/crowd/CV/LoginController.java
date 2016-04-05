@@ -12,7 +12,6 @@ import com.crowd.entities.Membre;
 import com.crowd.helper.LoadStage;
 import com.crowd.mainform.Main;
 import com.crowd.mainform.MainFormController;
-import com.sun.java.swing.plaf.windows.resources.windows;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;

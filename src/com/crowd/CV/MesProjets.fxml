@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="1000.0" stylesheets="@controls.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.CV.MesProjetsController">
+<AnchorPane id="AnchorPane" fx:id="paneParent" prefHeight="550.0" prefWidth="1000.0" stylesheets="@controls.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.CV.MesProjetsController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="50.0" layoutY="50.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -54,7 +54,7 @@
                      </children>
                   </GridPane>
                   <Label layoutX="31.0" layoutY="14.0" text="Detaits Projets :" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
-                  <TextField fx:id="cherchF" layoutX="285.0" layoutY="20.0" onKeyPressed="#cherchAction" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="20.0" />
+                  <TextField fx:id="cherchF" layoutX="285.0" layoutY="20.0" onKeyPressed="#cherchInstAction" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="20.0" />
                   <Hyperlink layoutX="34.0" layoutY="504.0" text="Notre site web" AnchorPane.bottomAnchor="21.0" />
                   <MaterialButton layoutX="484.0" layoutY="19.0" onAction="#cherchAction" text="Chercher" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="19.0" />
                   <MaterialButton layoutX="584.0" layoutY="19.0" minWidth="42.0" onAction="#ActualiserAction" prefWidth="42.0" text="..." AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="19.0" />

@@ -26,5 +26,5 @@ public interface icategorie {
     
      public categorieProjet findcategorieProjetByName(String nomcategorie) throws SQLException ;
     
-    
+     public int findIdByCat(String nomcategorie) throws SQLException;
 }
