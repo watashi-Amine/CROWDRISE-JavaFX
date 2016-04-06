@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import main.java.eu.tjago.speechfxapp.util.VoiceReaderService;
@@ -73,6 +74,8 @@ public class AjoutProjetController implements Initializable {
     private boolean ajouterClicked = false;
     private Thread voiceReadingThread;
     private String AbsolutePath;
+    private File mainfile;
+   private String imagename;
 
     /**
      * Initializes the controller class.
@@ -145,7 +148,9 @@ public class AjoutProjetController implements Initializable {
                 Projet.setBUDJET(Double.parseDouble(BudgetF.getText()));
                 Projet.setType(T);
                 Projet.setCATEGORIE(C);
-               Projet.setFICHIER(AbsolutePath);
+                Projet.setProjetimage(mainfile);
+                Projet.setImage(imagename);
+               
                
                Membre m = new Membre(Singleton.getInstance().getMembre().getId_membre());
                
@@ -300,21 +305,49 @@ public class AjoutProjetController implements Initializable {
                 **   Upload Code
                 **
          */
-        JFileChooser chooser = new JFileChooser();
-        int returnVal = chooser.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File selection = chooser.getSelectedFile();
-            System.out.println(selection.getAbsolutePath());
-            this.AbsolutePath = selection.getAbsolutePath();
-            System.out.println(AbsolutePath);
-            /*
-                **
-                **  end  Upload Code
-                **
-             */
+         
+        
+        
+         FileChooser fileChooser = new FileChooser();
+        //Extention filter remove below two comments for extension filter
+        FileChooser.ExtensionFilter extentionFilter = new FileChooser.ExtensionFilter("Images (.png, .jpg, .bmp)", "*.jpg", "*.png", "*.bmp");
+        fileChooser.getExtensionFilters().add(extentionFilter);
+        //Set to user directory or go to default if cannot access
+        String userDirectoryString = System.getProperty("user.home");
+        File userDirectory = new File(userDirectoryString);
+        if (!userDirectory.canRead()) {
+            userDirectory = new File("c:/");
+        }
+        fileChooser.setInitialDirectory(userDirectory);
+
+        //Choose the file
+        File chosenFile = fileChooser.showOpenDialog(null);
+        //Make sure a file was selected, if not return default
+        String path;
+        if (chosenFile != null) {
+            path = chosenFile.getPath();
+            File file = new File(path);
+              mainfile = chosenFile;
+           
+           
+            
+            
+             Image image = new Image(file.toURI().toString());
+            //image Viewer 
+            System.out.println(chosenFile.getName().toString());
+            
+            
+            
+            
+            
+           imagename=chosenFile.getName().toString();//utilisable lel outputRead buffer
+        } else {
+            //default return value
+            path = null;
+        }
+            
+              
 
         }
-
-    }
 
 }

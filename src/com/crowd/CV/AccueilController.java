@@ -7,6 +7,7 @@ package com.crowd.CV;
 
 import com.crowd.DAO.ProjetDao;
 import com.crowd.IDAO.iprojet;
+import com.crowd.Util.Singleton;
 import com.crowd.entities.Projet;
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import java.net.URL;
@@ -20,6 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -80,14 +83,22 @@ public class AccueilController implements Initializable {
                 l.setFont(new Font("Arial", 30));
                 Label l1 = new Label("Resumer");
                 l1.setFont(new Font("Arial", 30));
-
+    Image im = new Image("file:///C:\\wamp\\www\\1\\uploadsProjets\\"+ListeProjet.get(j).getImage());
+                System.out.println("file:///C:\\wamp\\www\\1\\uploadsProjets\\"+ListeProjet.get(j).getImage());
+  ImageView Iv=  new ImageView();
+  Iv.setImage(im);
+  Iv.setFitWidth(100);
+         Iv.setStyle("-fx-padding: 1 1 1 1;");
+         Iv.setFitHeight(250);
+         Iv.setFitWidth(250);
+                System.out.println(ListeProjet.get(j).getImage());
                 ProgressBar Pb = new ProgressBar(Math.round(ListeProjet.get(j).getArgent() / ListeProjet.get(j).getBUDJET()));
                 Pb.setStyle("  -fx-background-color:  white \n"
                         + "        -fx-box-border,\n"
                         + "        linear-gradient(to bottom, derive(-fx-accent,95%), derive(-fx-accent,10%)),\n"
                         + "        linear-gradient(to bottom, derive(-fx-accent,38%), -fx-accent);\n");
 
-                VBox v = new VBox(l, new Label(ListeProjet.get(j).getNOM_PROJET()), l1, new Label(ListeProjet.get(j).getRESUME()), new Label("Evolution du financement"), new HBox(new Label(" \n   ")), Pb, new HBox(new Label(" \n   ")), new Button("financer"));
+                VBox v = new VBox(l, new Label(ListeProjet.get(j).getNOM_PROJET()),Iv, l1, new Label(ListeProjet.get(j).getRESUME()), new Label("Evolution du financement"), new HBox(new Label(" \n   ")), Pb, new HBox(new Label(" \n   ")), new Button("financer"));
                 v.setStyle("-fx-background-color: rgb(255.0, 255.0, 255.0);"
                         + "-fx-background-radius: 4.0;"
                         + "-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);"

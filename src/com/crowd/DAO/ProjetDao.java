@@ -11,6 +11,8 @@ import com.crowd.entities.Projet;
 import com.crowd.entities.categorieProjet;
 import com.crowd.entities.typeProjet;
 import com.crowd.IDAO.iprojet;
+import com.crowd.Util.MultipartUtility;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,7 +51,7 @@ public class ProjetDao implements iprojet {
             ps.setInt(5, p.getCATEGORIE().getID_CATEGORIE_PROJET());
 
             ps.setInt(6, p.getType().getID_TYPE());
-                ps.setString(7, p.getFICHIER());
+            ps.setString(7, p.getFICHIER());
             ps.executeUpdate();
             System.out.println("ok");
 
@@ -98,7 +100,7 @@ public class ProjetDao implements iprojet {
 
         List<Projet> ListeProjet = new ArrayList<Projet>();
 
-        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_TYPE,ID_CATEGORIE_PROJET,FICHIER from projet";
+        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_TYPE,ID_CATEGORIE_PROJET,FICHIER,	imageFile from projet";
         try {
             Statement statement = cnx.createStatement();
             ResultSet resultat = statement.executeQuery(requete);
@@ -111,8 +113,9 @@ public class ProjetDao implements iprojet {
                 Projet.setArgent(resultat.getDouble(4));
                 Projet.setID_PROJET(resultat.getInt(5));
                 Projet.setID_Type(resultat.getInt(6));
-                    Projet.setID_Cat(resultat.getInt(7));
-                    Projet.setFICHIER(resultat.getString(8));
+                Projet.setID_Cat(resultat.getInt(7));
+                Projet.setFICHIER(resultat.getString(8));
+                Projet.setImage(resultat.getString(9));
                 ListeProjet.add(Projet);
             }
             System.out.println(ListeProjet);
@@ -129,25 +132,25 @@ public class ProjetDao implements iprojet {
 
         List<Projet> ListeProjet = new ArrayList<Projet>();
 
-        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where id =?  ;";
+        String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE,imageFile from projet where id =?  ;";
         try {
-               pstm = cnx.prepareStatement(requete);
-          
+            pstm = cnx.prepareStatement(requete);
+
             pstm = cnx.prepareStatement(requete);
             pstm.setInt(1, i);
-            
-            
-              ResultSet resultat = pstm.executeQuery();
-            
+
+            ResultSet resultat = pstm.executeQuery();
+
             while (resultat.next()) {
                 Projet Projet = new Projet();
-                 Projet.setNOM_PROJET(resultat.getString(1));
+                Projet.setNOM_PROJET(resultat.getString(1));
                 Projet.setRESUME(resultat.getString(2));
                 Projet.setBUDJET(resultat.getDouble(3));
                 Projet.setArgent(resultat.getDouble(4));
-                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_PROJET(resultat.getInt(5));
                 Projet.setID_Cat(resultat.getInt(6));
                 Projet.setID_Type(resultat.getInt(7));
+                Projet.setImage(resultat.getString(8));
                 ListeProjet.add(Projet);
             }
 
@@ -176,24 +179,24 @@ public class ProjetDao implements iprojet {
         }
     }
 
-      public List<Projet> findByNOM_PROJET(String d) {
+    public List<Projet> findByNOM_PROJET(String d) {
         List<Projet> listeProjets = new ArrayList<Projet>();
 
         String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where NOM_PROJET like '%' ? '%';";
 
         try {
-           
-      pstm = cnx.prepareStatement(requete);
+
+            pstm = cnx.prepareStatement(requete);
             pstm.setString(1, d);
             ResultSet resultat = pstm.executeQuery();
- 
+
             while (resultat.next()) {
                 Projet Projet = new Projet();
                 Projet.setNOM_PROJET(resultat.getString(1));
                 Projet.setRESUME(resultat.getString(2));
                 Projet.setBUDJET(resultat.getDouble(3));
                 Projet.setArgent(resultat.getDouble(4));
-                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_PROJET(resultat.getInt(5));
                 Projet.setID_Cat(resultat.getInt(6));
                 Projet.setID_Type(resultat.getInt(7));
                 listeProjets.add(Projet);
@@ -208,25 +211,25 @@ public class ProjetDao implements iprojet {
 
     }
 
-public List<Projet> findByNOM_PROJETAndUser(String d,int i) {
+    public List<Projet> findByNOM_PROJETAndUser(String d, int i) {
         List<Projet> listeProjets = new ArrayList<Projet>();
 
         String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where NOM_PROJET like '%' ? '%' And id = ?;";
 
         try {
-           
-      pstm = cnx.prepareStatement(requete);
+
+            pstm = cnx.prepareStatement(requete);
             pstm.setString(1, d);
             pstm.setInt(2, i);
             ResultSet resultat = pstm.executeQuery();
-  icategorie icat = new categorieProjetDao();
+            icategorie icat = new categorieProjetDao();
             while (resultat.next()) {
                 Projet Projet = new Projet();
                 Projet.setNOM_PROJET(resultat.getString(1));
                 Projet.setRESUME(resultat.getString(2));
                 Projet.setBUDJET(resultat.getDouble(3));
                 Projet.setArgent(resultat.getDouble(4));
-                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_PROJET(resultat.getInt(5));
                 Projet.setID_Cat(resultat.getInt(6));
                 Projet.setID_Type(resultat.getInt(7));
                 listeProjets.add(Projet);
@@ -241,10 +244,9 @@ public List<Projet> findByNOM_PROJETAndUser(String d,int i) {
 
     }
 
+    public void addthis(Projet p) {
 
-       public void addthis(Projet p) {
-
-        String req = "insert into projet (NOM_PROJET,RESUME,BUDJET,argent,ID_CATEGORIE_PROJET,ID_TYPE,FICHIER,id) values (?,?,?,?,?,?,?,?) ";
+        String req = "insert into projet (NOM_PROJET,RESUME,BUDJET,argent,ID_CATEGORIE_PROJET,ID_TYPE,FICHIER,id,imageFile) values (?,?,?,?,?,?,?,?,?) ";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNOM_PROJET());
@@ -255,8 +257,35 @@ public List<Projet> findByNOM_PROJETAndUser(String d,int i) {
             ps.setInt(5, p.getCATEGORIE().getID_CATEGORIE_PROJET());
 
             ps.setInt(6, p.getType().getID_TYPE());
-                ps.setString(7, p.getFICHIER());
-                ps.setInt(8, p.getMembre().getId_membre());
+            ps.setString(7, p.getFICHIER());
+            ps.setInt(8, p.getMembre().getId_membre());
+            ps.setString(9, p.getImage());
+            //*********************************upload web service photo de profile*****//
+            String charset = "UTF-8";
+            //   File uploadFile1 = new File("D:/logique.pdf");
+            //     File uploadFile2 = new File("C://Users/ASR1/Downloads/avatar.png");
+            String requestURL = "http://localhost:80/1/uploadProjetImage.php";
+
+            MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+
+            multipart.addHeaderField("User-Agent", "CodeJava");
+            multipart.addHeaderField("Test-Header", "Header-Value");
+
+            multipart.addFormField("Username", "TestUser");
+
+            multipart.addFilePart("uploaded_file[]", p.getProjetimage());
+            System.out.println("ddddddddddddddddddd");
+            //   multipart.addFilePart("fileUpload[]", uploadFile1);
+
+            List<String> response = multipart.finish();
+
+            System.out.println("SERVER REPLIED:");
+
+            for (String line : response) {
+                System.out.println(line);
+            }
+            ///****************************************************//
+
             ps.executeUpdate();
             System.out.println("ok");
 
@@ -264,35 +293,31 @@ public List<Projet> findByNOM_PROJETAndUser(String d,int i) {
             System.out.println("non");
 
             Logger.getLogger(ProjetDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ProjetDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-
-       
-       
-       
-
-     
-public List<Projet> findByCat(String d) {
+    public List<Projet> findByCat(String d) {
         List<Projet> listeProjets = new ArrayList<Projet>();
 
         String requete = "select NOM_PROJET,RESUME,BUDJET,argent,ID_PROJET,ID_CATEGORIE_PROJET,ID_TYPE from projet where  	ID_CATEGORIE_PROJET = ?;";
 
         try {
-           
-      pstm = cnx.prepareStatement(requete);
-               icategorie icat = new categorieProjetDao();
+
+            pstm = cnx.prepareStatement(requete);
+            icategorie icat = new categorieProjetDao();
             pstm.setInt(1, icat.findIdByCat(d));
             ResultSet resultat = pstm.executeQuery();
-  
+
             while (resultat.next()) {
                 Projet Projet = new Projet();
                 Projet.setNOM_PROJET(resultat.getString(1));
                 Projet.setRESUME(resultat.getString(2));
                 Projet.setBUDJET(resultat.getDouble(3));
                 Projet.setArgent(resultat.getDouble(4));
-                 Projet.setID_PROJET(resultat.getInt(5));
+                Projet.setID_PROJET(resultat.getInt(5));
                 Projet.setID_Cat(resultat.getInt(6));
                 Projet.setID_Type(resultat.getInt(7));
                 listeProjets.add(Projet);
@@ -306,8 +331,5 @@ public List<Projet> findByCat(String d) {
         }
 
     }
-
-
-
 
 }

@@ -26,6 +26,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -34,6 +35,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 
 /**
@@ -62,6 +64,8 @@ public class  MainFormController implements Initializable {
     public Text usernameText;
     @FXML
     private Label ff;
+    @FXML
+    private AnchorPane anchorparent;
     
  
    
@@ -175,6 +179,7 @@ usernameText.setText(usr);
     
     @FXML
     private void menuAction(ActionEvent event) {
+        
         TranslateTransition openNav = new TranslateTransition(new Duration(350), sidePane);
         openNav.setToX(0);
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), sidePane);

@@ -5,6 +5,8 @@
  */
 package com.crowd.entities;
 
+import java.io.File;
+
 /**
  *
  * @author MohamedAmine
@@ -22,6 +24,15 @@ private double	argent;
    private String image	;     
 
  private int id ; 
+ private File Projetimage;
+
+    public File getProjetimage() {
+        return Projetimage;
+    }
+
+    public void setProjetimage(File Projetimage) {
+        this.Projetimage = Projetimage;
+    }
 
    private typeProjet type;
       private categorieProjet CATEGORIE ; 

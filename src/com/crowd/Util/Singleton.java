@@ -6,6 +6,7 @@
 package com.crowd.Util;
 
 import com.crowd.entities.Membre;
+import com.crowd.entities.Projet;
 import java.lang.reflect.Member;
 import javafx.scene.control.TextField;
 
@@ -23,8 +24,16 @@ public class Singleton {
 
         private TextField txtField1;
         private TextField txtField2;
-        
+        private Projet projet;
         private Membre membre;
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
 
         public TextField getTxtField2() {
             return txtField2;
