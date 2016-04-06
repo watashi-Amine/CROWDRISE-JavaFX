@@ -8,10 +8,12 @@ package com.crowd.CV;
 import com.crowd.DAO.*;
 import com.crowd.entities.*;
 import com.crowd.IDAO.*;
+import com.crowd.Util.Singleton;
 import com.crowd.mainform.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -32,12 +34,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import main.java.eu.tjago.speechfxapp.util.VoiceReaderService;
 import org.kairos.components.MaterialButton;
@@ -74,7 +78,7 @@ public class ProjetsController implements Initializable {
     private TableView<Projet> ProjetTableView;
       private Window primaryStage;
     private ObservableList<Projet> ProjetData = FXCollections.observableArrayList();
-       private Thread voiceReadingThread;
+       private java.lang.Thread voiceReadingThread;
         iprojet ProjetDao = new ProjetDao();
     @FXML
     private TextField cherchF;
@@ -83,7 +87,15 @@ public class ProjetsController implements Initializable {
     private Button XBtn;
     @FXML
     private MaterialButton OBtn;
-
+    @FXML
+    private TextFlow textFlow;
+    @FXML
+    private MaterialButton vote;
+    @FXML
+    private MaterialButton commenter;
+    @FXML
+    private TextField textField;
+  private boolean ajouterClicked = false;
     
     /**
      * Initializes the controller class.
@@ -229,7 +241,7 @@ showProjetDetails(null);
         TypeLabel.setText( itype.findtypeProjetByid(Projet.getID_Type()).toString());
         CattegorieLabel.setText(icat.findcategorieProjetById(Projet.getID_Cat()).toString());
         
-        
+        textFlow.getChildren().clear();
         
         
             
@@ -248,7 +260,7 @@ showProjetDetails(null);
         
         
         
-                voiceReadingThread = new Thread () {
+                voiceReadingThread = new java.lang.Thread() {
             public void run() {
                 VoiceReaderService voiceService = new VoiceReaderService();
                 voiceService.setVoice( "kevin");
@@ -386,7 +398,7 @@ showProjetDetails(null);
          
          
      
-         voiceReadingThread = new Thread () {
+         voiceReadingThread = new java.lang.Thread() {
             public void run() {
                 String tair =". . . . . . . . . . . . . . . . . . . . . . . . . . . ";
                 VoiceReaderService voiceService = new VoiceReaderService();
@@ -479,10 +491,146 @@ showProjetDetails(null);
            
     }
 
+  
+  
+
     
 
+    @FXML
+    private void commentAction(ActionEvent event) throws SQLException {
+        // 
+                Projet selectedProjet = ProjetTableView.getSelectionModel().getSelectedItem();
+
+        Comment cm = new Comment();
+        if(TitreProjetLabel.getText()!=null){
+        cm.setAuthor_id(Singleton.getInstance().getMembre().getId_membre());
+       
+        cm.setBody(textField.getText());
+        cm.setCreated_at(LocalDateTime.now()+"");
+        cm.setScore(5);
+        cm.setState(2);
+        cm.setDepth(3);
+        cm.setAncestors("mmm");
+
+        ICommentDAO comDAO = new CommentDAO();
+        comDAO.addComment(cm);
+        }else{
+            
+            cm.setAuthor_id(Singleton.getInstance().getMembre().getId_membre());
+        cm.setThread_id("foo");
+        cm.setBody(textField.getText());
+        cm.setCreated_at(LocalDateTime.now()+"");
+        cm.setScore(5);
+        cm.setState(2);
+        cm.setDepth(3);
+        cm.setAncestors("mmm");
+
+        ICommentDAO comDAO = new CommentDAO();
+        comDAO.addComment(cm);
+        }
+     //   Thread th= new Thread();
+        
+        
+        
+        System.out.println(textField.getText());
+        commentAjout();
+        ajouterClicked = true;
+
+    }
+
+    @FXML
+    private void OnKeyPressed(KeyEvent e) {
+        if (e.getCode() == KeyCode.ENTER) {
+            commenter.fire();
+        }
+    }
+
+    private void commentAjout() {
+        Text text;
+        if (textFlow.getChildren().size() == 0) {
+            text = new Text(textField.getText());
+        } else {
+            // Add new line if not the first child
+            text = new Text("\n" + textField.getText());
+        }
+        if (textField.getText().contains(":)")) {
+
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/network-and-security-icons-by-artistsvalley/png/16x16/Regular/Friend%20Smiley.png");
+            // Remove :) from text
+            text.setText(text.getText().replace(":)", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(":D")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/august-icon-set-by-austintheheller/png/32x32/Smiley%20Really%20Happy.png");
+            // Remove :D from text
+            text.setText(text.getText().replace(":D", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(";)")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/august-icon-set-by-austintheheller/png/32x32/Smiley%20Wink.png");
+            // Remove ;) from text
+            text.setText(text.getText().replace(";)", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(":P")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/circular-icons-by-pro-theme-design/png/16x16/smiley_tounge.png");
+            // Remove :P from text
+            text.setText(text.getText().replace(":P", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(":|")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/august-icon-set-by-austintheheller/png/32x32/Smiley%20OK.png");
+            // Remove  :| from text
+            text.setText(text.getText().replace(":|", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(">:(")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/august-icon-set-by-austintheheller/png/32x32/Smiley%20Angry.png");
+            // Remove >:( from text
+            text.setText(text.getText().replace(">:(", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(":'(")) {
+            ImageView imageView = new ImageView("http://referentiel.nouvelobs.com/file/13969241.jpg");
+            // Remove :'( from text
+            text.setText(text.getText().replace(":'(", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains(":$")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/toolbar-icons/fugue-16px-icons-by-yusuke-kamiyamane/png/16x16/smiley-confuse.png");
+            // Remove :$ from text
+            text.setText(text.getText().replace(":$", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains("8(")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/toolbar-icons/fugue-16px-icons-by-yusuke-kamiyamane/png/16x16/smiley-roll-sweat.png");
+            // Remove 8( from text
+            text.setText(text.getText().replace("8(", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains("$D")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/web-icons/august-icon-set-by-austintheheller/png/32x32/Smiley%20Cool.png");
+            // Remove $D from text
+            text.setText(text.getText().replace("$D", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains("():)")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/toolbar-icons/fugue-16px-additional-icons-by-yusuke-kamiyamane/png/16x16/smiley-angel.png");
+            // Remove ():) from text
+            text.setText(text.getText().replace("():)", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains("3:)")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/toolbar-icons/fugue-16px-icons-by-yusuke-kamiyamane/png/16x16/smiley-evil.png");
+            // Remove 3:) from text
+            text.setText(text.getText().replace("3:)", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else if (textField.getText().contains("<3")) {
+            ImageView imageView = new ImageView("http://files.softicons.com/download/toolbar-icons/blueberry-icon-set-by-icojam/png/32x32/favorite_love.png");
+            // Remove <3 from text
+            text.setText(text.getText().replace("<3", " "));
+            textFlow.getChildren().addAll(text, imageView);
+        } else {
+            textFlow.getChildren().add(text);
+        }
+        textField.clear();
+        textField.requestFocus();
+
+    }
+
    
-     
+       public boolean isOkClicked() {
+        return ajouterClicked;
+    }
      
      
 }

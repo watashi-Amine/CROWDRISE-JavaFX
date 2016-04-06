@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kairos.components.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import org.kairos.components.MaterialButton?>
+<?import org.kairos.components.TextInputLayout?>
+
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="393.0" stylesheets="@controls.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crowd.CV.AjoutCommentController">
+   <children>
+      <Pane layoutY="-6.0" prefHeight="558.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="Titre" layoutX="54.0" layoutY="299.0" text="Date de creation" />
+            <Label fx:id="Resume" layoutX="53.0" layoutY="370.0" text="Resume" />
+            <Label fx:id="Budget" layoutX="56.0" layoutY="211.0" text="Score" />
+            <Label layoutX="57.0" layoutY="155.0" text="Theme" />
+            <ComboBox fx:id="ThemeComboBox" layoutX="194.0" layoutY="134.0" prefWidth="150.0" />
+            <Label fx:id="TitreLabel" layoutX="27.0" layoutY="14.0" text="Label" />
+            <TextInputLayout layoutX="194.0" layoutY="195.0">
+               <children>
+                  <TextField fx:id="ScoreTextField" />
+               </children>
+            </TextInputLayout>
+            <DatePicker fx:id="dateP" layoutX="194.0" layoutY="299.0" prefHeight="37.0" prefWidth="150.0" />
+            <TextInputLayout layoutX="196.0" layoutY="357.0" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0">
+               <children>
+                  <TextArea fx:id="CommentTextArea" prefHeight="95.0" prefWidth="150.0" style="-fx-font-family: OpenSansEmoji;" />
+               </children>
+            </TextInputLayout>
+            <MaterialButton fx:id="AnnulerBtn" layoutX="225.0" layoutY="499.0" onAction="#AnnulerAction" text="annuler" />
+            <MaterialButton fx:id="AjouterBtn" layoutX="105.0" layoutY="499.0" onAction="#handleAjouter" text="Ajouter" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

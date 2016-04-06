@@ -121,7 +121,7 @@ public class MembreDAO implements IMembre {
     }
 
     public void updateMembre(Membre membre) {
-        String requete = "update membre set nom=? where id=?";
+        String requete = "update user set nom=? where id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setString(1, membre.getNom());
@@ -152,7 +152,7 @@ public class MembreDAO implements IMembre {
     }
 
     public void removeMembreyId(Membre membre) {
-        String requete = "delete from membre where id=? ";
+        String requete = "delete from user where id=? ";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setInt(1, membre.getId_membre());
@@ -168,7 +168,7 @@ public class MembreDAO implements IMembre {
     public Membre findMembreById(int id) {
 
         Membre membre = new Membre();
-        String requete = "select * from membre where id=?";
+        String requete = "select * from user where id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setInt(1, id);
@@ -327,6 +327,52 @@ public class MembreDAO implements IMembre {
 
    
 
-  
+   @Override
+    public List<Membre> findMembre() {
+
+        List<Membre> listeMembre = new ArrayList<Membre>();
+
+        String requete = "select username from user ";
+
+        try {
+          PreparedStatement  pstm = cnx.prepareStatement(requete);
+
+//            pstm.setString(1, d);
+            ResultSet resultat = pstm.executeQuery();
+
+            while (resultat.next()) {
+                Membre mm = new Membre();
+                mm.setUsername(resultat.getString(1));
+                listeMembre.add(mm);
+            }
+
+            return listeMembre;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche  " + ex.getMessage());
+            return null;
+        }
+
+    }
+
+     @Override
+    public int findMembreByusername(String name) {
+         int membre = 0;
+        String requete = "select id from user where username=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                membre=rs.getInt(1);
+               
+            }
+            return membre;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche du membre " + ex.getMessage());
+            return 0;
+        } }
+    
     
 }

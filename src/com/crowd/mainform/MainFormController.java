@@ -144,6 +144,14 @@ public class  MainFormController implements Initializable {
                 loadStage.loadAnchorPane(viewPane, "/about/About.fxml");
             }
         });
+               VBoxContentHelper.propHelper("Les Comantaires", new MaterialDesignIconView(MaterialDesignIcon.HEART), hBoxMenu, new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("comment click !!!");
+                loadStage.loadAnchorPane(viewPane, "/CV/Comantaire.fxml");
+            }
+        });
 
         MaterialIconView iconMenu = new MaterialIconView(MaterialIcon.ARROW_BACK);
         iconMenu.getStyleClass().add("icon");

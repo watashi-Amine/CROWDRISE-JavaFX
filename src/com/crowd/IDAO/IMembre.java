@@ -21,13 +21,13 @@ public interface IMembre {
         public void removeMembreyId(Membre membre);
         public Membre findMembreById(int id);
         ObservableList<Membre> findMembreByAnyCritere(String recherche);
-
+   public List<Membre> findMembre();
         ObservableList<Membre> listerMembre();
        public Membre informationMembre(String username);
 
         public boolean authentification(String username,String password);
         public String selectrole(int id);
         
-        
+        public int findMembreByusername(String name);
 
 }
