@@ -23,7 +23,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #F0F8FF;">
                <children>
                   <GridPane layoutX="20.0" layoutY="57.0" prefHeight="249.0" prefWidth="397.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                     <columnConstraints>
@@ -62,7 +62,7 @@
                   <MaterialButton fx:id="ModifierBnt" layoutX="466.0" layoutY="497.0" onAction="#ModifierAction" text="Modifier..." AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="129.0" />
                   <MaterialButton fx:id="AjouterBtn" layoutX="349.0" layoutY="497.0" onAction="#AjouterAction" text="Ajouter..." AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="249.0" />
                   <MaterialButton fx:id="XBtn" layoutX="21.0" layoutY="365.0" onAction="#XlireAction" text="X" />
-                  <MaterialButton fx:id="OBtn" layoutX="126.0" layoutY="365.0" onAction="#OlireAction" text="O" />
+                  <MaterialButton fx:id="OBtn" layoutX="126.0" layoutY="365.0" onAction="#OlireAction" style="-fx-background-color: #16B84E;" text="O" textFill="#dd2626" />
                </children>
             </AnchorPane>
         </items>

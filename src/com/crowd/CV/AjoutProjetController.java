@@ -72,7 +72,7 @@ public class AjoutProjetController implements Initializable {
     private Label AjoutProjetlabel;
     private Stage dialogStage;
     private boolean ajouterClicked = false;
-    private Thread voiceReadingThread;
+    private java.lang.Thread voiceReadingThread;
     private String AbsolutePath;
     private File mainfile;
    private String imagename;
@@ -275,7 +275,7 @@ public class AjoutProjetController implements Initializable {
                 **   Message d'acueil
                 **
              */
-            voiceReadingThread = new Thread() {
+            voiceReadingThread = new java.lang.Thread() {
                 public void run() {
                     VoiceReaderService voiceService = new VoiceReaderService();
                     voiceService.setVoice("kevin");

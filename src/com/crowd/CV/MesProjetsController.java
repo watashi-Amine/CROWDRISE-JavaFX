@@ -15,6 +15,8 @@ import com.crowd.Util.Singleton;
 import com.crowd.animations.FadeInLeftTransition;
 import com.crowd.entities.Projet;
 import com.crowd.mainform.Main;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -44,6 +46,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import main.java.eu.tjago.speechfxapp.util.VoiceReaderService;
 import org.kairos.components.MaterialButton;
+import sun.net.www.content.audio.x_aiff;
 
 /**
  * FXML Controller class
@@ -100,6 +103,7 @@ public class MesProjetsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         this.fadeIn();
+       
         
       cherchF.setPromptText("chercher projet");
         

@@ -20,11 +20,11 @@ and open the template in the editor.
     src: url('Roboto-Regular.ttf');
 }
 *{
-    -color-primary:#3F51B5;
-    -color-accent:#F44336;
-    -color-secondary:#1E88E5;
-    -color-dark-primary:#303F9F;
-    -color-body:#F5F5F5;
+    -color-primary:  #2E8B57;
+    -color-accent:  #2E8B57;
+    -color-secondary:  #2E8B57;
+    -color-dark-primary:  #2E8B57;
+    -color-body:  #2E8B57;
 }
 
 .text-input{

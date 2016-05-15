@@ -77,9 +77,14 @@ public class AccueilController implements Initializable {
         iprojet ProjetDao = new ProjetDao();
         List<Projet> ListeProjet = new ArrayList<Projet>();
         ListeProjet = ProjetDao.display();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 1; j < 10; j++) {
-                Label l = new Label("Titre");
+         
+        for (int i = 1; i < 4; i++) {
+        for (int j = 1; j < ListeProjet.size(); j++) {   
+                
+                
+                
+                
+                Label l = new Label(ListeProjet.get(j).getNOM_PROJET());
                 l.setFont(new Font("Arial", 30));
                 Label l1 = new Label("Resumer");
                 l1.setFont(new Font("Arial", 30));
@@ -98,11 +103,12 @@ public class AccueilController implements Initializable {
                         + "        linear-gradient(to bottom, derive(-fx-accent,95%), derive(-fx-accent,10%)),\n"
                         + "        linear-gradient(to bottom, derive(-fx-accent,38%), -fx-accent);\n");
 
-                VBox v = new VBox(l, new Label(ListeProjet.get(j).getNOM_PROJET()),Iv, l1, new Label(ListeProjet.get(j).getRESUME()), new Label("Evolution du financement"), new HBox(new Label(" \n   ")), Pb, new HBox(new Label(" \n   ")), new Button("financer"));
+                VBox v = new VBox( new Label("Titre"),l,Iv, l1, new Label(ListeProjet.get(j).getRESUME()), new Label("Evolution du financement"), new HBox(new Label(" \n   ")), Pb, new HBox(new Label(" \n   ")), new Button("financer"));
                 v.setStyle("-fx-background-color: rgb(255.0, 255.0, 255.0);"
                         + "-fx-background-radius: 4.0;"
                         + "-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);"
                         + "-fx-padding: 16 16 16 16;");
+                
                 Grid.add(v, i, j);
                 Grid.setHgap(10); //horizontal gap in pixels => that's what you are asking for
                 Grid.setVgap(10); //vertical gap in pixels
